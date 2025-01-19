@@ -4,12 +4,7 @@
 Build a train booking app
 
 ## PROBLEM
-Current train booking processes are often complicated and frustrating for users:
-- Multiple websites need to be checked for the best routes and prices
-- Booking interfaces are frequently confusing and outdated
-- Last-minute changes and cancellations are difficult to manage
-- Real-time updates about delays or platform changes are inconsistent
-- Comparing different travel options (times, prices, routes) is time-consuming
+My current booking stuff should include European travel from Fance to UK
 
 ## SOLUTION
 Create a modern, user-friendly train booking platform that:
