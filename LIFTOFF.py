@@ -244,4 +244,8 @@ def launch(
     fill_mission(debug=debug, dry_run=dry_run)
 
 if __name__ == "__main__":
-    app()
+    try:
+        app()
+    except typer.Exit:
+        # If no command provided, run launch
+        launch()
