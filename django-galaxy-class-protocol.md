@@ -19,7 +19,7 @@ sequenceDiagram
     Note over F: Development Phase
     Note over F: Testing Implementation
     
-    Note over LD: Testing Implementation
+    Note over LD: Testing
     Note over LD: Debug Operations
     
     Note over D: Performance Monitoring
