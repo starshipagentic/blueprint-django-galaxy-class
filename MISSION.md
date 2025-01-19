@@ -21,20 +21,24 @@ Current train booking systems face several challenges:
 
 ## TARGET MARKET
 Primary Users:
-- Business travelers between UK and France
+- Business travelers between UK, France, and USA
 - International tourists exploring multiple European countries
-- Study abroad students and educational groups
+- Study abroad students and educational groups from USA
 - Regular commuters on cross-border routes
-- Corporate travel departments
-- Travel agencies specializing in European tours
+- Corporate travel departments with transatlantic operations
+- Travel agencies specializing in European and US tours
+- American tourists planning European rail adventures
+- European expatriates living in the USA
 
 Secondary Users:
-- Occasional leisure travelers
+- Occasional leisure travelers from all three countries
 - Family groups requiring multiple bookings
 - Senior travelers needing accessible booking options
-- Event organizers coordinating group travel
+- Event organizers coordinating international group travel
 - Travel insurance providers
 - Railway staff and operators
+- US travel consolidators
+- International student exchange programs
 
 ## SOLUTION
 Create a modern, user-friendly train booking platform that:
