@@ -4,44 +4,31 @@ This sequence diagram illustrates the complete flow of setting up a Django proje
 
 ```mermaid
 sequenceDiagram
-    participant U as User
     participant I as IGNITION.py
     participant L as LIFTOFF.py
     participant F as FLIGHT.py
     participant LD as LANDING.py
     participant D as DISCOVER.py
-    participant V as Virtual Environment
-    participant DJ as Django
-    participant G as Git
 
-    U->>I: Execute IGNITION.py
-    Note over I: Input: Project name
+    Note over I: Project Initialization
+    Note over I: Environment Setup
     
-    I->>V: create_virtual_environment()
-    Note over V: Output: New venv directory
+    Note over L: Documentation Setup
+    Note over L: Repository Configuration
     
-    I->>V: install_required_packages()
-    Note over V: Output: Base dependencies installed
+    Note over F: Development Phase
+    Note over F: Testing Implementation
     
-    I->>D: setup_django_project()
-    Note over D: Input: Project name<br>Output: Django project structure
+    Note over LD: Production Deployment
+    Note over LD: System Configuration
     
-    I->>D: install_dependencies()
-    Note over D: Output: Project-specific<br>dependencies installed
-    
-    U->>L: Execute LIFTOFF.py
-    Note over L: Input: Project details
-    
-    L->>G: Initialize repository
-    Note over G: Output: Git repository ready
-    
-    L->>L: fill_mission()
-    Note over L: Input: Project goals<br>Output: Completed MISSION.md
-    
-    L->>G: Commit changes
-    Note over G: Output: Initial commit with<br>project structure
+    Note over D: Performance Monitoring
+    Note over D: System Optimization
 
-    Note over U,G: Project Setup Complete
+    I->>L: Project Structure Ready
+    L->>F: Documentation Complete
+    F->>LD: Development Complete
+    LD->>D: Deployment Complete
 ```
 
 ## Stage Details
