@@ -1,7 +1,7 @@
 # Mission Statement for blog
 
 ## GOAL
-to blog
+build a train booking app
 
 ## PROBLEM
 [Describe the specific problem or pain point your app addresses]
