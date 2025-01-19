@@ -85,33 +85,32 @@ def fill_mission(use_voice=False, debug=False, dry_run=False):
     raise typer.Exit()
 
 def check_api_key():
-    """Check if ANTHROPIC_API_KEY is set, prompt for it if missing."""
+    """Check if ANTHROPIC_API_KEY is set, load from .env if exists, or prompt user."""
     api_key = os.getenv('ANTHROPIC_API_KEY')
+    
+    # If not in environment, try to load from .env
     if not api_key:
-        console.print("[yellow]No Anthropic API key found in environment.[/yellow]")
+        env_path = os.path.join(os.getcwd(), '.env')
+        if os.path.exists(env_path):
+            with open(env_path, 'r') as f:
+                for line in f:
+                    if line.startswith('ANTHROPIC_API_KEY='):
+                        api_key = line.split('=')[1].strip().strip('"').strip("'")
+                        break
+    
+    # If still no API key, prompt user and save to .env
+    if not api_key:
+        console.print("[yellow]No Anthropic API key found.[/yellow]")
         api_key = Prompt.ask("Please enter your Anthropic API key")
         
-        # Add to ~/.zshrc
-        zshrc_path = os.path.expanduser("~/.zshrc")
-        with open(zshrc_path, "a") as f:
-            f.write(f'\nexport ANTHROPIC_API_KEY="{api_key}"')
-        
-        # Set for current session
-        os.environ['ANTHROPIC_API_KEY'] = api_key
-        
-        # Tell user to source or provide a command they can run to apply changes
-        console.print("[green]API key added to ~/.zshrc[/green]")
-        console.print("[yellow]To make this permanent, please run:[/yellow]")
-        console.print("[blue]source ~/.zshrc[/blue]")
-        
-        # Optionally, we could try to source it automatically using a new shell
-        try:
-            subprocess.run(['/bin/zsh', '-i', '-c', f'source {zshrc_path}'], check=True)
-            console.print("[green]Successfully sourced ~/.zshrc[/green]")
-        except subprocess.CalledProcessError:
-            console.print("[red]Could not automatically source ~/.zshrc[/red]")
-            console.print("[yellow]Please run 'source ~/.zshrc' manually in your terminal[/yellow]")
+        # Save to .env file
+        env_path = os.path.join(os.getcwd(), '.env')
+        with open(env_path, 'a') as f:
+            f.write(f'\nANTHROPIC_API_KEY="{api_key}"')
+        console.print("[green]API key saved to .env file[/green]")
     
+    # Set for current session
+    os.environ['ANTHROPIC_API_KEY'] = api_key
     return True
 
 def check_aider_installation():
