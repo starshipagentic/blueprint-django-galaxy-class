@@ -19,8 +19,8 @@ sequenceDiagram
     Note over F: Development Phase
     Note over F: Testing Implementation
     
-    Note over LD: Production Deployment
-    Note over LD: System Configuration
+    Note over LD: Testing Implementation
+    Note over LD: Debug Operations
     
     Note over D: Performance Monitoring
     Note over D: System Optimization
