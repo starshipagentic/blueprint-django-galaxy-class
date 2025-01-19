@@ -202,5 +202,14 @@ def launch(
     console.print("\n[bold cyan]Step 1: Defining the Mission[/bold cyan]")
     fill_mission(use_voice=voice, debug=debug, dry_run=dry_run)
 
+@app.callback(invoke_without_command=True)
+def main(ctx: typer.Context,
+    debug: bool = typer.Option(False, "--debug", help="Enable debug output"),
+    voice: bool = typer.Option(False, "--voice", help="Enable voice interaction"),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Preview changes without modifying files")):
+    """Main callback that runs if no command is provided"""
+    if ctx.invoked_subcommand is None:
+        launch(debug=debug, voice=voice, dry_run=dry_run)
+
 if __name__ == "__main__":
     app()
