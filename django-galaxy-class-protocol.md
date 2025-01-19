@@ -57,7 +57,7 @@ sequenceDiagram
   - Initial documentation validation
 - **Output:** 
   - Complete project documentation
-  - Project plan and timeline
+  - Project plan and sequence
 
 ### 3. FLIGHT.py - Development Phase
 - **Primary Functions:**
