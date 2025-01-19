@@ -99,9 +99,19 @@ def check_api_key():
         # Set for current session
         os.environ['ANTHROPIC_API_KEY'] = api_key
         
-        # Source the updated .zshrc
+        # Tell user to source or provide a command they can run to apply changes
         console.print("[green]API key added to ~/.zshrc[/green]")
-        subprocess.run(['source', zshrc_path], shell=True)
+        console.print("[yellow]To make this permanent, please run:[/yellow]")
+        console.print("[blue]source ~/.zshrc[/blue]")
+        
+        # Optionally, we could try to source it automatically using a new shell
+        try:
+            subprocess.run(['/bin/zsh', '-i', '-c', f'source {zshrc_path}'], check=True)
+            console.print("[green]Successfully sourced ~/.zshrc[/green]")
+        except subprocess.CalledProcessError:
+            console.print("[red]Could not automatically source ~/.zshrc[/red]")
+            console.print("[yellow]Please run 'source ~/.zshrc' manually in your terminal[/yellow]")
+    
     return True
 
 def check_aider_installation():
