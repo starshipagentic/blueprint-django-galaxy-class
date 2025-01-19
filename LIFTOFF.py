@@ -67,7 +67,7 @@ def open_markdown(file_path):
         console.print(f"[red]Failed to open {file_path}[/red]")
         return False
 
-def fill_mission(debug=False, dry_run=False):
+def fill_mission(use_voice=False, debug=False, dry_run=False):
     """Use aider to fill out MISSION.md"""
     console.print("\n[cyan]Let's define the mission of your project.[/cyan]")
     console.print("[yellow]First, review the current MISSION.md[/yellow]")
@@ -111,7 +111,7 @@ def check_aider_installation():
                 return False
 
 
-def run_aider(prompt, files_to_add, debug=False, dry_run=False):
+def run_aider(prompt, files_to_add, use_voice=False, debug=False, dry_run=False):
     """Run Droid Assistant using aider's Python API."""
     if not check_aider_installation():
         raise typer.Exit(code=1)
@@ -189,51 +189,10 @@ def run_aider(prompt, files_to_add, debug=False, dry_run=False):
             console.print(f"[red]Error running aider: {str(e)}[/red]")
             raise typer.Exit(code=1)
 
-@commands.command(help="Push changes to GitHub repository")
-def push(
-    message: str = typer.Option(None, "--message", "-m", help="Commit message"),
-    debug: bool = typer.Option(False, "--debug", help="Enable debug output")
-):
-    """Push changes to GitHub repository."""
-    try:
-        if message is None:
-            message = Prompt.ask("Enter commit message")
-        
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            console=console
-        ) as progress:
-            task = progress.add_task("[yellow]Pushing changes...[/yellow]", total=None)
-            
-            # Add all changes
-            if debug:
-                console.print("[yellow]Adding changes...[/yellow]")
-            subprocess.run(["git", "add", "."], check=True)
-            
-            # Commit changes
-            if debug:
-                console.print(f"[yellow]Committing with message: {message}[/yellow]")
-            subprocess.run(["git", "commit", "-m", message], check=True)
-            
-            # Push changes
-            if debug:
-                console.print("[yellow]Pushing to remote...[/yellow]")
-            subprocess.run(["git", "push"], check=True)
-            
-            progress.stop()
-            console.print("[green]Successfully pushed changes to GitHub![/green]")
-            
-    except subprocess.CalledProcessError as e:
-        console.print(f"[red]Error pushing changes: {str(e)}[/red]")
-        raise typer.Exit(code=1)
-    except Exception as e:
-        console.print(f"[red]Unexpected error: {str(e)}[/red]")
-        raise typer.Exit(code=1)
-
-@commands.command(help="Launch the documentation process")
+@app.command(help="Launch the documentation process")
 def launch(
     debug: bool = typer.Option(False, "--debug", help="Enable debug output"),
+    voice: bool = typer.Option(False, "--voice", help="Enable voice interaction"),
     dry_run: bool = typer.Option(False, "--dry-run", help="Preview changes without modifying files")
 ):
     """Launch the documentation process."""
@@ -241,14 +200,7 @@ def launch(
     
     # Fill out the mission and exit
     console.print("\n[bold cyan]Step 1: Defining the Mission[/bold cyan]")
-    fill_mission(debug=debug, dry_run=dry_run)
+    fill_mission(use_voice=voice, debug=debug, dry_run=dry_run)
 
 if __name__ == "__main__":
-    try:
-        app()
-    except typer.Exit:
-        # Only launch if no command was provided (sys.argv has length 1)
-        if len(sys.argv) == 1:
-            launch()
-        else:
-            raise
+    app()
