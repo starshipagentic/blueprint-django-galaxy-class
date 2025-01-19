@@ -7,8 +7,11 @@ sequenceDiagram
     participant U as User
     participant I as IGNITION.py
     participant L as LIFTOFF.py
+    participant F as FLIGHT.py
+    participant LD as LANDING.py
+    participant D as DISCOVER.py
     participant V as Virtual Environment
-    participant D as Django
+    participant DJ as Django
     participant G as Git
 
     U->>I: Execute IGNITION.py
