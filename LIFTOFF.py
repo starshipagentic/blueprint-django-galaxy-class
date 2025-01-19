@@ -181,7 +181,9 @@ def run_aider(prompt, files_to_add, use_voice=False, debug=False, dry_run=False)
             
             # Execute the prompt
             progress.stop()
+            coder.run("/map-refresh")
             result = coder.run(prompt)
+            coder.run("/map-refresh")
             
             if debug:
                 console.print("[dim]Aider completed processing[/dim]")
@@ -208,6 +210,7 @@ def run_aider(prompt, files_to_add, use_voice=False, debug=False, dry_run=False)
                     
                 progress.start()
                 progress.update(task, description="Droid is thinking...")
+                coder.run("/map-refresh")
                 result = coder.run(new_prompt)
                 progress.stop()
                 
