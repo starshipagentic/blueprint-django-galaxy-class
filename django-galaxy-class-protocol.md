@@ -1,4 +1,4 @@
-n# Django Galaxy-Class Protocol
+# Django Galaxy-Class Protocol
 
 This sequence diagram illustrates the complete flow of setting up a Django project using the LIFTOFF system.
 
