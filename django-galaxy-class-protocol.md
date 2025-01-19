@@ -43,6 +43,16 @@ sequenceDiagram
 
 ## Stage Details
 
+## Mission Control Sequence
+
+1. **IGNITION.py** - Project initialization and environment setup
+2. **LIFTOFF.py** - Documentation and repository setup
+3. **FLIGHT.py** - Development and testing phase
+4. **LANDING.py** - Deployment and production setup
+5. **DISCOVER.py** - Monitoring and optimization
+
+## Stage Details
+
 ### 1. IGNITION.py Execution
 - **Input Required:** Project name
 - **Primary Functions:**
