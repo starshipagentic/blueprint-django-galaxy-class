@@ -7,7 +7,6 @@ sequenceDiagram
     participant I as IGNITION.py
     participant L as LIFTOFF.py
     participant F as FLIGHT.py
-    participant LD as LANDING.py
     participant D as DISCOVER.py
 
     Note over I: Project Initialization
@@ -17,18 +16,15 @@ sequenceDiagram
     Note over L: Repository Configuration
     
     Note over F: Development Phase
-    Note over F: Testing Implementation
-    
-    Note over LD: Testing
-    Note over LD: Debug Operations
+    Note over F: Testing
+    Note over F: Debug Operations
     
     Note over D: Performance Monitoring
     Note over D: System Optimization
 
     I->>L: Project Structure Ready
     L->>F: Documentation Complete
-    F->>LD: Development Complete
-    LD->>D: Deployment Complete
+    F->>D: Development Complete
 ```
 
 ## Stage Details
@@ -37,9 +33,8 @@ sequenceDiagram
 
 1. **IGNITION.py** - Project initialization and environment setup
 2. **LIFTOFF.py** - Documentation and repository setup
-3. **FLIGHT.py** - Development and testing phase
-4. **LANDING.py** - Deployment and production setup
-5. **DISCOVER.py** - Monitoring and optimization
+3. **FLIGHT.py** - Development, testing and debugging phase
+4. **DISCOVER.py** - Monitoring and optimization
 
 ## Stage Details
 
