@@ -247,5 +247,8 @@ if __name__ == "__main__":
     try:
         app()
     except typer.Exit:
-        # If no command provided, run launch
-        launch()
+        # Only launch if no command was provided (sys.argv has length 1)
+        if len(sys.argv) == 1:
+            launch()
+        else:
+            raise
