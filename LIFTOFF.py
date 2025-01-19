@@ -84,11 +84,32 @@ def fill_mission(use_voice=False, debug=False, dry_run=False):
     run_aider(mission_prompt, ["MISSION.md"], debug=debug, dry_run=dry_run)
     raise typer.Exit()
 
+def check_api_key():
+    """Check if ANTHROPIC_API_KEY is set, prompt for it if missing."""
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        console.print("[yellow]No Anthropic API key found in environment.[/yellow]")
+        api_key = Prompt.ask("Please enter your Anthropic API key")
+        
+        # Add to ~/.zshrc
+        zshrc_path = os.path.expanduser("~/.zshrc")
+        with open(zshrc_path, "a") as f:
+            f.write(f'\nexport ANTHROPIC_API_KEY="{api_key}"')
+        
+        # Set for current session
+        os.environ['ANTHROPIC_API_KEY'] = api_key
+        
+        # Source the updated .zshrc
+        console.print("[green]API key added to ~/.zshrc[/green]")
+        subprocess.run(['source', zshrc_path], shell=True)
+    return True
+
 def check_aider_installation():
     """Check if aider is installed and accessible, install if missing."""
     try:
         import aider
-        return True
+        # Check API key after confirming aider is installed
+        return check_api_key()
     except ImportError:
         with Progress(
             SpinnerColumn(),
@@ -114,6 +135,7 @@ def check_aider_installation():
 def run_aider(prompt, files_to_add, use_voice=False, debug=False, dry_run=False):
     """Run Droid Assistant using aider's Python API."""
     if not check_aider_installation():
+        console.print("[red]Failed to setup required components.[/red]")
         raise typer.Exit(code=1)
         
     from aider.coders import Coder
