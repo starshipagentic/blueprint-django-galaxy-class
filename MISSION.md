@@ -3,6 +3,9 @@
 ## GOAL
 Build a comprehensive train booking app specializing in European rail travel, with a focus on France-UK routes
 
+## VISION
+To become Europe's leading cross-border rail booking platform, revolutionizing international train travel by making it as simple as booking a domestic journey. We aim to break down the barriers between national rail systems and create a seamless, user-friendly experience for all European rail travelers.
+
 ## PROBLEM
 Current train booking systems face several challenges:
 - Fragmented booking processes across different national rail operators
@@ -11,6 +14,27 @@ Current train booking systems face several challenges:
 - Inconsistent pricing and schedule information
 - Language barriers in booking interfaces
 - Complicated booking modification procedures for international journeys
+- Poor real-time updates for international connections
+- Lack of unified customer support for cross-border journeys
+- Inconsistent refund policies between operators
+- Limited mobile booking capabilities for international routes
+
+## TARGET MARKET
+Primary Users:
+- Business travelers between UK and France
+- International tourists exploring multiple European countries
+- Study abroad students and educational groups
+- Regular commuters on cross-border routes
+- Corporate travel departments
+- Travel agencies specializing in European tours
+
+Secondary Users:
+- Occasional leisure travelers
+- Family groups requiring multiple bookings
+- Senior travelers needing accessible booking options
+- Event organizers coordinating group travel
+- Travel insurance providers
+- Railway staff and operators
 
 ## SOLUTION
 Create a modern, user-friendly train booking platform that:
